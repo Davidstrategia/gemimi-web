@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Gemimi Vibes — La app definitiva para la vida nocturna. Descubre discotecas, eventos, chats y mucho más.">
+  <title>Gemimi Vibes — La Noche Es Tuya</title>
+  <link rel="stylesheet" href="styles.css?v=9">
+  <link rel="icon" type="image/png" href="logo-icon.png">
+</head>
+
+<body class="intro-active">
+
+  <!-- ============ MAGNETIC CURSOR ============ -->
+  <div id="cursor-glow"></div>
+  <div id="cursor-dot"></div>
+
+  <!-- ============ SCROLL PROGRESS ============ -->
+  <div id="scroll-progress"></div>
+
+  <!-- ============ PARTICLES ============ -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- ============ CINEMATIC INTRO v2 ============ -->
+  <div id="intro">
+    <!-- Fullscreen video background -->
+    <video class="intro-video" autoplay muted loop playsinline>
+      <source src="Darkness_with_neon_lights_delpmaspu_.mp4" type="video/mp4">
+    </video>
+    <div class="intro-video-overlay"></div>
+
+    <button id="skip-intro" onclick="skipIntro()">Ir a página principal ›</button>
+  </div>
+
+  <!-- ============ NAVBAR ============ -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#hero" class="nav-logo-wrap">
+        <img src="logo-icon.png" alt="Gemimi" class="nav-logo-icon">
+        <span class="nav-logo-text">GEMIMI</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#clients" onclick="closeMenu()">Clientes</a></li>
+        <li><a href="#negocios" onclick="closeMenu()">Discotecas</a></li>
+        <li><a href="#cta" onclick="closeMenu()">Descargar</a></li>
+        <li><a href="#cta" class="nav-cta" onclick="closeMenu()">🍸 Pruébala Gratis</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section id="hero">
+    <div class="hero-mesh">
+      <div class="hero-mesh-orb"></div>
+      <div class="hero-mesh-orb"></div>
+      <div class="hero-mesh-orb"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text reveal">
+          <div class="hero-badge">
+            <span>Disponible ahora</span>
+          </div>
+          <h1>Tú tienes el <span class="text-gradient">deseo.</span><br>Nosotros tenemos el <span
+              class="text-gradient">lugar.</span></h1>
+          <p class="hero-typewriter"
+            data-phrases='["Encuentra tu plan perfecto para esta noche", "Conoce gente con tus mismas vibes", "Accede a eventos VIP exclusivos", "Descubre los mejores locales cerca de ti"]'>
+            Encuentra tu plan perfecto para esta noche</p>
+          <div class="hero-buttons">
+            <a href="#cta" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Descargar App
+            </a>
+            <a href="#clients" class="btn btn-outline">Explorar Features</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number" data-target="150" data-suffix="+">0</span>
+              <span class="stat-label">Discotecas</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" data-target="50" data-suffix="K+">0</span>
+              <span class="stat-label">Usuarios</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" data-target="12" data-suffix="">0</span>
+              <span class="stat-label">Ciudades</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal-right">
+          <div class="phone-mockup">
+            <img src="gemimi_app_mockup.png" alt="Gemimi App" id="hero-phone">
+            <div class="phone-glow"></div>
+          </div>
+          <div class="hero-float-card">
+            <div class="float-icon purple">📡</div>
+            <div class="float-text">
+              <strong>3 locales cerca</strong>
+              <span>En un radio de 500m</span>
+            </div>
+          </div>
+          <div class="hero-float-card">
+            <div class="float-icon pink">🎫</div>
+            <div class="float-text">
+              <strong>Entrada confirmada</strong>
+              <span>Neon Club — VIP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOR CLIENTS ============ -->
+  <section id="clients">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag"><span class="tag-dot"></span> Para Clientes</span>
+        <h2>Todo lo que necesitas para <span class="text-gradient">disfrutar la noche</span></h2>
+        <p>Desde descubrir los mejores locales hasta entrar sin esperar. Gemimi te da el control total de tu experiencia
+          nocturna.</p>
+      </div>
+
+      <div class="features-grid stagger">
+        <div class="feature-card reveal" style="--i: 0">
+          <div class="feature-icon purple">📡</div>
+          <h3>Radar de Discotecas</h3>
+          <p>Encuentra los locales más cercanos con geolocalización en tiempo real. Filtra por estilo de música, precio
+            y vibes.</p>
+        </div>
+
+        <div class="feature-card reveal" style="--i: 1">
+          <div class="feature-icon pink">💬</div>
+          <h3>Chats Exclusivos</h3>
+          <p>Chats por discoteca y por rango de edad. Conoce gente antes de salir y haz planes con otros noctámbulos.
+          </p>
+        </div>
+
+        <div class="feature-card reveal" style="--i: 2">
+          <div class="feature-icon gold">🎫</div>
+          <h3>Entradas y Eventos</h3>
+          <p>Compra tickets, accede con QR y disfruta de precios early bird y promociones VIP directamente desde la app.
+          </p>
+        </div>
+
+        <div class="feature-card reveal" style="--i: 3">
+          <div class="feature-icon green">✨</div>
+          <h3>Perfil Personalizado</h3>
+          <p>Crea tu perfil con tus gustos musicales, bebidas favoritas y tu tipo de fiesta ideal. Hasta 5 fotos para
+            brillar.</p>
+        </div>
+
+        <div class="feature-card reveal" style="--i: 4">
+          <div class="feature-icon cyan">⭐</div>
+          <h3>Favoritos y Reviews</h3>
+          <p>Guarda tus locales favoritos, puntúa tu experiencia y consulta opiniones de otros usuarios antes de salir.
+          </p>
+        </div>
+
+        <div class="feature-card reveal" style="--i: 5">
+          <div class="feature-icon purple">📊</div>
+          <h3>Tu Historial</h3>
+          <p>Estadísticas de tus noches: eventos asistidos, gastos, zonas favoritas. Todo para que conozcas tu
+            nightlife.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOR BUSINESSES ============ -->
+  <section id="negocios">
+    <div class="container">
+      <div class="business-layout">
+        <div class="business-text reveal-left">
+          <span class="section-tag" style="margin-bottom: var(--space-lg); display: inline-flex;"><span
+              class="tag-dot"></span> Para Discotecas</span>
+          <h2>El panel de control que tu <span class="text-gradient-gold">negocio necesita</span></h2>
+          <p>7 módulos profesionales para gestionar tu local como nunca antes. Analytics con IA, control de acceso,
+            tickets y mucho más.</p>
+
+          <div class="module-list">
+            <div class="module-item">
+              <span class="module-icon">📊</span>
+              <div class="module-info">
+                <h4>Analytics con IA</h4>
+                <p>Reportes inteligentes + exportación a PDF</p>
+              </div>
+            </div>
+            <div class="module-item">
+              <span class="module-icon">🎪</span>
+              <div class="module-info">
+                <h4>Events & Tickets</h4>
+                <p>Crea eventos, vende entradas y gestiona aforo</p>
+              </div>
+            </div>
+            <div class="module-item">
+              <span class="module-icon">🔐</span>
+              <div class="module-info">
+                <h4>Access Control</h4>
+                <p>Escáner QR + gestión de listas VIP</p>
+              </div>
+            </div>
+            <div class="module-item">
+              <span class="module-icon">👥</span>
+              <div class="module-info">
+                <h4>The Team</h4>
+                <p>Gestión de roles y permisos del equipo</p>
+              </div>
+            </div>
+            <div class="module-item">
+              <span class="module-icon">🏢</span>
+              <div class="module-info">
+                <h4>My Venue</h4>
+                <p>Perfil completo del local con 20+ fotos y vídeos</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-visual reveal-right">
+          <div class="dashboard-card">
+            <div class="dashboard-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="dashboard-content">
+              <div class="dashboard-header">
+                <h4>Dashboard — Neon Club</h4>
+                <span class="dashboard-badge">● En vivo</span>
+              </div>
+              <div class="dashboard-stats-row">
+                <div class="dash-stat">
+                  <span class="number purple" data-target="847">0</span>
+                  <span class="label">Visitantes hoy</span>
+                </div>
+                <div class="dash-stat">
+                  <span class="number gold" data-target="12540">0</span>
+                  <span class="label">€ Ingresos</span>
+                </div>
+                <div class="dash-stat">
+                  <span class="number green" data-target="94">0</span>
+                  <span class="label">% Satisfacción</span>
+                </div>
+              </div>
+              <div class="chart-placeholder">
+                <div class="chart-bars">
+                  <div class="chart-bar" style="height: 40%"></div>
+                  <div class="chart-bar" style="height: 65%"></div>
+                  <div class="chart-bar" style="height: 45%"></div>
+                  <div class="chart-bar" style="height: 80%"></div>
+                  <div class="chart-bar" style="height: 55%"></div>
+                  <div class="chart-bar" style="height: 90%"></div>
+                  <div class="chart-bar" style="height: 70%"></div>
+                  <div class="chart-bar" style="height: 85%"></div>
+                  <div class="chart-bar" style="height: 60%"></div>
+                  <div class="chart-bar" style="height: 75%"></div>
+                  <div class="chart-bar" style="height: 95%"></div>
+                  <div class="chart-bar" style="height: 50%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLOGAN DIVIDER ============ -->
+  <section class="slogan-divider" id="slogan-divider">
+    <div class="slogan-glow"></div>
+    <div class="container">
+      <blockquote class="slogan-quote reveal">
+        <span class="slogan-line slogan-line-1">Tú tienes el <em>deseo.</em></span>
+        <span class="slogan-line slogan-line-2">Nosotros tenemos el <em>lugar.</em></span>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section id="cta">
+    <div class="container">
+      <div class="cta-content reveal">
+        <span class="section-tag"><span class="tag-dot"></span> Descarga Ahora</span>
+        <h2>Tú ya sabes lo que <span class="text-gradient">quieres.</span></h2>
+        <p>Descarga Gemimi gratis y descubre el lugar perfecto para esta noche. <strong>Tú tienes el deseo. Nosotros
+            tenemos el lugar.</strong></p>
+        <div class="cta-buttons">
+          <button class="store-btn" id="btn-appstore">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+            </svg>
+            <span class="store-text">
+              <small>Descárgala en</small>
+              <strong>App Store</strong>
+            </span>
+          </button>
+          <button class="store-btn" id="btn-googleplay">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z" />
+            </svg>
+            <span class="store-text">
+              <small>Disponible en</small>
+              <strong>Google Play</strong>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo-wrap">
+            <img src="logo-icon.png" alt="Gemimi" class="nav-logo-icon">
+            <span class="nav-logo-text">GEMIMI</span>
+          </div>
+          <p>La app definitiva para la vida nocturna. Conectamos a personas con experiencias inolvidables, y a
+            discotecas con su audiencia perfecta.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Producto</h4>
+          <ul>
+            <li><a href="#clients">Para Clientes</a></li>
+            <li><a href="#negocios">Para Discotecas</a></li>
+            <li><a href="#cta">Descargar</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Empresa</h4>
+          <ul>
+            <li><a href="#">Sobre Nosotros</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacidad</a></li>
+            <li><a href="#">Términos</a></li>
+            <li><a href="#">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Gemimi Vibes. Todos los derechos reservados.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="TikTok">🎵</a>
+          <a href="#" aria-label="Twitter">𝕏</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=9"></script>
+</body>
+
+</html>

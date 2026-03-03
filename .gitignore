@@ -1,0 +1,25 @@
+# System files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Misc
+*.log
+*.tmp
+
+# Gemini/Antigravity agent files
+.agents/
+_PLANTILLA-PROYECTO/
