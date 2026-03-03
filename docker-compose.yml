@@ -6,9 +6,8 @@ services:
     ports:
       - "4322:80"
     networks:
-      - npm_network
+      - web
 
 networks:
-  npm_network:
+  web:
     external: true
-    name: nginx-proxy-manager_default
