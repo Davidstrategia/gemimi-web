@@ -16,7 +16,7 @@ COPY logo-icon.png /usr/share/nginx/html/
 COPY logo-full.png /usr/share/nginx/html/
 COPY logo.svg /usr/share/nginx/html/
 COPY gemimi_app_mockup.png /usr/share/nginx/html/
-COPY "portada hero.jpeg" /usr/share/nginx/html/
+COPY ["portada hero.jpeg", "/usr/share/nginx/html/"]
 COPY Logo_turns_on_effect_delpmaspu_.mp4 /usr/share/nginx/html/
 
 EXPOSE 80
