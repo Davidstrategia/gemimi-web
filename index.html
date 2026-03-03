@@ -7,7 +7,7 @@
   <meta name="description"
     content="Gemimi Vibes — La app definitiva para la vida nocturna. Descubre discotecas, eventos, chats y mucho más.">
   <title>Gemimi Vibes — La Noche Es Tuya</title>
-  <link rel="stylesheet" href="styles.css?v=9">
+  <link rel="stylesheet" href="styles.css?v=12">
   <link rel="icon" type="image/png" href="logo-icon.png">
 </head>
 
@@ -26,12 +26,18 @@
   <!-- ============ CINEMATIC INTRO v2 ============ -->
   <div id="intro">
     <!-- Fullscreen video background -->
-    <video class="intro-video" autoplay muted loop playsinline>
-      <source src="Darkness_with_neon_lights_delpmaspu_.mp4" type="video/mp4">
+    <video class="intro-video" id="intro-video" playsinline>
+      <source src="Logo_turns_on_effect_delpmaspu_.mp4" type="video/mp4">
     </video>
     <div class="intro-video-overlay"></div>
 
-    <button id="skip-intro" onclick="skipIntro()">Ir a página principal ›</button>
+    <!-- Mute toggle icon (top-right corner) -->
+    <button id="mute-toggle" class="mute-toggle" onclick="toggleMute()">
+      <span id="mute-icon">🔊</span>
+    </button>
+
+    <!-- Skip button (hidden, shown after video ends) -->
+    <button id="skip-intro" class="skip-intro-hidden" onclick="skipIntro()">Ir a página principal ›</button>
   </div>
 
   <!-- ============ NAVBAR ============ -->
@@ -55,6 +61,7 @@
 
   <!-- ============ HERO ============ -->
   <section id="hero">
+    <div class="hero-bg-image"></div>
     <div class="hero-mesh">
       <div class="hero-mesh-orb"></div>
       <div class="hero-mesh-orb"></div>
@@ -66,7 +73,7 @@
           <div class="hero-badge">
             <span>Disponible ahora</span>
           </div>
-          <h1>Tú tienes el <span class="text-gradient">deseo.</span><br>Nosotros tenemos el <span
+          <h1>Tú tienes <span class="text-gradient">las ganas.</span><br>Nosotros tenemos el <span
               class="text-gradient">lugar.</span></h1>
           <p class="hero-typewriter"
             data-phrases='["Encuentra tu plan perfecto para esta noche", "Conoce gente con tus mismas vibes", "Accede a eventos VIP exclusivos", "Descubre los mejores locales cerca de ti"]'>
@@ -121,6 +128,30 @@
       </div>
     </div>
   </section>
+
+  <!-- ============ MARTINI DIVIDER ============ -->
+  <div class="martini-divider">
+    <svg viewBox="0 0 200 180" width="60" height="54" class="martini-icon">
+      <defs>
+        <linearGradient id="martiniGlassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#FF6B8A" />
+          <stop offset="100%" style="stop-color:#FF4D6A" />
+        </linearGradient>
+        <linearGradient id="martiniDiamondGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#FFD700" />
+          <stop offset="100%" style="stop-color:#FFA500" />
+        </linearGradient>
+      </defs>
+      <polygon points="70,100 130,100 100,140" fill="url(#martiniGlassGrad)" opacity="0.9" />
+      <line x1="100" y1="140" x2="100" y2="165" stroke="url(#martiniGlassGrad)" stroke-width="4" />
+      <line x1="82" y1="165" x2="118" y2="165" stroke="url(#martiniGlassGrad)" stroke-width="4"
+        stroke-linecap="round" />
+      <polygon points="100,75 112,90 100,100 88,90" fill="url(#martiniDiamondGrad)" />
+      <line x1="100" y1="68" x2="100" y2="62" stroke="#FFD700" stroke-width="2" stroke-linecap="round" />
+      <line x1="115" y1="73" x2="120" y2="68" stroke="#FFD700" stroke-width="2" stroke-linecap="round" />
+      <line x1="85" y1="73" x2="80" y2="68" stroke="#FFD700" stroke-width="2" stroke-linecap="round" />
+    </svg>
+  </div>
 
   <!-- ============ FOR CLIENTS ============ -->
   <section id="clients">
@@ -280,7 +311,7 @@
     <div class="slogan-glow"></div>
     <div class="container">
       <blockquote class="slogan-quote reveal">
-        <span class="slogan-line slogan-line-1">Tú tienes el <em>deseo.</em></span>
+        <span class="slogan-line slogan-line-1">Tú tienes <em>las ganas.</em></span>
         <span class="slogan-line slogan-line-2">Nosotros tenemos el <em>lugar.</em></span>
       </blockquote>
     </div>
@@ -292,7 +323,7 @@
       <div class="cta-content reveal">
         <span class="section-tag"><span class="tag-dot"></span> Descarga Ahora</span>
         <h2>Tú ya sabes lo que <span class="text-gradient">quieres.</span></h2>
-        <p>Descarga Gemimi gratis y descubre el lugar perfecto para esta noche. <strong>Tú tienes el deseo. Nosotros
+        <p>Descarga Gemimi gratis y descubre el lugar perfecto para esta noche. <strong>Tú tienes las ganas. Nosotros
             tenemos el lugar.</strong></p>
         <div class="cta-buttons">
           <button class="store-btn" id="btn-appstore">

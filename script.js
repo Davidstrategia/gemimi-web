@@ -15,6 +15,46 @@ function skipIntro() {
   setTimeout(() => { intro.remove(); }, 800);
 }
 
+// Unmute video on user interaction
+function toggleMute() {
+  const video = document.getElementById('intro-video');
+  const icon = document.getElementById('mute-icon');
+  if (!video || !icon) return;
+  video.muted = !video.muted;
+  icon.textContent = video.muted ? '🔇' : '🔊';
+}
+
+// Smart autoplay: try with audio, fallback to muted
+(function () {
+  const video = document.getElementById('intro-video');
+  const skipBtn = document.getElementById('skip-intro');
+  const muteIcon = document.getElementById('mute-icon');
+  if (!video) return;
+
+  video.volume = 0.7;
+
+  // Try to play with audio first
+  const playPromise = video.play();
+  if (playPromise !== undefined) {
+    playPromise.then(() => {
+      // Autoplay with audio worked!
+      if (muteIcon) muteIcon.textContent = '🔊';
+    }).catch(() => {
+      // Browser blocked audio autoplay — fallback to muted
+      video.muted = true;
+      if (muteIcon) muteIcon.textContent = '🔇';
+      video.play();
+    });
+  }
+
+  // Show skip button when video ends
+  if (skipBtn) {
+    video.addEventListener('ended', () => {
+      skipBtn.classList.add('visible');
+    });
+  }
+}());
+
 // ============ MAGNETIC CURSOR + GLOW ============
 const cursorGlow = document.getElementById('cursor-glow');
 const cursorDot = document.getElementById('cursor-dot');

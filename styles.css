@@ -133,12 +133,12 @@ h4,
 h5 {
   font-family: var(--font-display);
   font-weight: 800;
-  line-height: 1.08;
+  line-height: 1.15;
   letter-spacing: -0.03em;
 }
 
 h1 {
-  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
 }
 
 h2 {
@@ -211,11 +211,14 @@ section {
 
 .intro-video {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 95%;
+  max-height: 90%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
   z-index: 1;
 }
 
@@ -225,9 +228,75 @@ section {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 70%, rgba(6, 5, 14, 0.9) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.2) 70%, rgba(6, 5, 14, 0.85) 100%);
   z-index: 2;
   pointer-events: none;
+}
+
+/* Mute toggle — small corner icon */
+.mute-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all var(--transition-fast);
+  opacity: 0;
+  animation: fadeSlideUp 0.5s forwards;
+  animation-delay: 0.5s;
+}
+
+.mute-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+/* Skip button hidden until video ends */
+.skip-intro-hidden {
+  position: relative;
+  z-index: 5;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  padding: 14px 40px;
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+.skip-intro-hidden.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.skip-intro-hidden:hover {
+  color: var(--neon-cyan);
+  border-color: rgba(0, 229, 255, 0.6);
+  background: rgba(0, 229, 255, 0.12);
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.2), 0 0 60px rgba(0, 229, 255, 0.05);
+  transform: translateY(-2px);
 }
 
 #intro.fade-out {
@@ -663,6 +732,33 @@ section {
   padding-top: 80px;
 }
 
+/* Hero background photo */
+.hero-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('portada hero.jpeg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.25;
+  z-index: 0;
+}
+
+.hero-bg-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg,
+      rgba(6, 5, 14, 0.7) 0%,
+      rgba(6, 5, 14, 0.4) 40%,
+      rgba(6, 5, 14, 0.8) 100%);
+}
+
 /* Background animated mesh */
 .hero-mesh {
   position: absolute;
@@ -802,6 +898,7 @@ section {
 
 .hero-text h1 {
   margin-bottom: var(--space-lg);
+  padding-bottom: 4px;
 }
 
 .hero-text p {
@@ -2200,5 +2297,44 @@ section.section-visible .cta-content {
   .slogan-line-1,
   .slogan-line-2 {
     font-size: clamp(1.8rem, 7vw, 3rem);
+  }
+}
+
+/* ============================================
+   MARTINI DIVIDER
+   ============================================ */
+.martini-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) 0;
+  position: relative;
+  background: var(--bg-dark);
+}
+
+.martini-divider::before,
+.martini-divider::after {
+  content: '';
+  flex: 1;
+  max-width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(155, 48, 255, 0.3), transparent);
+}
+
+.martini-icon {
+  margin: 0 var(--space-xl);
+  filter: drop-shadow(0 0 12px rgba(255, 77, 106, 0.4)) drop-shadow(0 0 30px rgba(155, 48, 255, 0.2));
+  animation: martiniGlow 4s ease-in-out infinite;
+}
+
+@keyframes martiniGlow {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 12px rgba(255, 77, 106, 0.4)) drop-shadow(0 0 30px rgba(155, 48, 255, 0.2));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 20px rgba(255, 77, 106, 0.6)) drop-shadow(0 0 50px rgba(155, 48, 255, 0.35));
   }
 }

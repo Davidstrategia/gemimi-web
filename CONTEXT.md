@@ -38,7 +38,7 @@ Landing page premium para **Gemimi Vibes**, la app definitiva para la vida noctu
 
 ### Características implementadas
 
-- **Intro cinematográfico**: Vídeo fullscreen con overlay oscuro y botón "Ir a página principal"
+- **Intro cinematográfico**: Vídeo con efecto logo neón (autoplay con audio inteligente), icono mute en esquina, botón "Ir a página principal" que aparece al terminar el vídeo
 - **Cursor magnético**: Efecto glow que sigue al ratón con atracción en elementos interactivos
 - **Partículas constelación**: Canvas con partículas animadas (púrpura, rosa, dorado) con líneas de conexión
 - **Tarjetas 3D tilt**: Efecto perspectiva al pasar el ratón sobre feature cards y dashboard
@@ -55,9 +55,10 @@ Landing page premium para **Gemimi Vibes**, la app definitiva para la vida noctu
 2. **Hero** — Título con typewriter, stats, mockup del móvil
 3. **Para Clientes** — 6 feature cards (Radar, Chats, Entradas, Perfil, Favoritos, Historial)
 4. **Para Discotecas** — 5 módulos del panel (Analytics IA, Events, Access Control, Team, Venue) + dashboard visual
-5. **Slogan Divider** — Frase "Tú tienes el deseo. Nosotros tenemos el lugar."
-6. **CTA** — Botones App Store y Google Play
-7. **Footer** — Links producto, empresa, legal + redes sociales
+5. **Slogan Divider** — Frase "Tú tienes las ganas. Nosotros tenemos el lugar."
+6. **Martini Divider** — Copa martini SVG animada como separador
+7. **CTA** — Botones App Store y Google Play
+8. **Footer** — Links producto, empresa, legal + redes sociales
 
 ---
 
@@ -72,7 +73,8 @@ Landing page premium para **Gemimi Vibes**, la app definitiva para la vida noctu
 | `logo-full.png` | Logo completo Gemimi |
 | `logo.svg` | Logo en formato vectorial |
 | `gemimi_app_mockup.png` | Mockup de la app para el hero |
-| `Darkness_with_neon_lights_delpmaspu_.mp4` | Vídeo de intro (~4.6MB) |
+| `Logo_turns_on_effect_delpmaspu_.mp4` | Vídeo de intro — logo neón encendiéndose |
+| `portada hero.jpeg` | Foto de discoteca para fondo del hero |
 
 ---
 
@@ -96,7 +98,20 @@ Landing page premium para **Gemimi Vibes**, la app definitiva para la vida noctu
 
 ## 📝 Notas y Decisiones
 
-### 2026-03-03
+### 2026-03-03 (sesión 2)
+
+- Cambiado slogan principal: "Tú tienes el deseo" → "Tú tienes las ganas"
+- Nuevo vídeo de intro: `Logo_turns_on_effect_delpmaspu_.mp4` (logo neón encendiéndose)
+- Vídeo intro: autoplay con audio inteligente (intenta con sonido, fallback a mudo)
+- Vídeo intro: `object-fit: contain` en vez de cover (no se corta), tamaño 95%/90%
+- Botón "Ir a página principal" aparece solo cuando termina el vídeo
+- Icono de mute/unmute como botón circular en esquina superior derecha
+- Foto de fondo en hero: `portada hero.jpeg` (discoteca con logo Gemimi proyectado)
+- Fix `line-height` de headings: 1.08 → 1.15 (arreglado texto cortado en "lugar.")
+- Reducido tamaño h1: `clamp(2.5rem, 5.5vw, 4.5rem)` para mejor distribución de líneas
+- Añadida copa martini SVG del logo como divisor animado entre Hero y Para Clientes
+
+### 2026-03-03 (sesión 1)
 
 - Actualizado CONTEXT.md con el estado actual del proyecto
 - El proyecto tiene todas las secciones de la landing implementadas
