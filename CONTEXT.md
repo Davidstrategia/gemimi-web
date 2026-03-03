@@ -1,6 +1,6 @@
 # 📋 Contexto del Proyecto - Gemimi Vibes Website
 
-> **Última actualización**: 2026-03-03  
+> **Última actualización**: 2026-03-04  
 > **Estado**: 🚧 En desarrollo
 
 ---
@@ -35,6 +35,9 @@ Landing page premium para **Gemimi Vibes**, la app definitiva para la vida noctu
 | Estilos | CSS puro (custom properties, animaciones) | ~45KB de estilos |
 | Interactividad | JavaScript vanilla (Canvas, IntersectionObserver) | ~17KB de scripts |
 | Assets | PNG, SVG, MP4 | Logo + mockup + vídeo intro |
+| Servidor | Docker + Nginx Alpine en VPS OVH | Puerto 4322 |
+| CI/CD | GitHub Actions | Deploy automático en push a main |
+| Dominio | gemimi.app | DNS en Cloudflare (Full Strict SSL) |
 
 ### Características implementadas
 
@@ -85,18 +88,32 @@ Landing page premium para **Gemimi Vibes**, la app definitiva para la vida noctu
 - [x] Requisitos definidos
 - [x] Stack elegido (HTML/CSS/JS vanilla)
 - [x] GitHub configurado
-- [ ] Docker local (no aplica — sitio estático)
+- [x] Docker configurado (Dockerfile + docker-compose.yml)
+- [x] CI/CD configurado (GitHub Actions)
 - [x] Desarrollo iniciado
 - [x] Estructura HTML completa
 - [x] Estilos CSS completos
 - [x] Interactividad JavaScript completa
 - [x] Intro con vídeo fullscreen implementado
 - [ ] Testing completado
-- [ ] Desplegado
+- [ ] GitHub Secrets configurados
+- [ ] Primer despliegue en VPS
+- [ ] Proxy Host en Nginx Proxy Manager
+- [ ] DNS en Cloudflare (gemimi.app → VPS)
 
 ---
 
 ## 📝 Notas y Decisiones
+
+### 2026-03-04
+
+- Creada infraestructura de despliegue para VPS OVH (`51.83.192.79`)
+- `Dockerfile`: Nginx Alpine sirviendo archivos estáticos
+- `nginx.conf`: gzip, cache headers, security headers
+- `docker-compose.yml`: puerto 4322, red compartida con Nginx Proxy Manager
+- `.github/workflows/deploy.yml`: CI/CD automático con `appleboy/ssh-action`
+- Dominio: `gemimi.app` (NS migrando a Cloudflare)
+- Pendiente: configurar GitHub Secrets, clonar repo en VPS, crear Proxy Host en NPM
 
 ### 2026-03-03 (sesión 2)
 
@@ -135,9 +152,18 @@ Landing page premium para **Gemimi Vibes**, la app definitiva para la vida noctu
 
 ## 🚀 Próximos Pasos
 
-1. Optimizar rendimiento (lazy loading vídeo, compresión de imágenes)
+### Despliegue (en progreso)
+
+1. Configurar GitHub Secrets (VPS_HOST, VPS_USER, VPS_SSH_KEY)
+2. Clonar repo en VPS: `git clone` en `~/gemimi-web`
+3. Primer `docker compose up -d` manual en VPS
+4. Configurar Proxy Host en NPM (gemimi.app → container:80)
+5. Registro A en Cloudflare: gemimi.app → 51.83.192.79
+
+### Mejoras pendientes
+
+6. Optimizar rendimiento (lazy loading vídeo, compresión de imágenes)
 2. Añadir meta tags Open Graph y Twitter Cards para compartir en redes
 3. Testing responsive en múltiples dispositivos
-4. Configurar despliegue (Vercel, Netlify o similar)
-5. Añadir página de política de privacidad y términos
-6. Conectar botones de descarga a las tiendas reales cuando la app esté disponible
+4. Añadir página de política de privacidad y términos
+5. Conectar botones de descarga a las tiendas reales cuando la app esté disponible

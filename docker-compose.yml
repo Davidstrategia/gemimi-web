@@ -1,0 +1,14 @@
+services:
+  gemimi-web:
+    build: .
+    container_name: gemimi-web
+    restart: unless-stopped
+    ports:
+      - "4322:80"
+    networks:
+      - npm_network
+
+networks:
+  npm_network:
+    external: true
+    name: nginx-proxy-manager_default

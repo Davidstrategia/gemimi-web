@@ -31,5 +31,6 @@ npm-debug.log*
 
 # Gemini/Antigravity agent files
 .gemini/
+.agent/
 .agents/
 _PLANTILLA-PROYECTO/
