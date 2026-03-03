@@ -1,13 +1,13 @@
-# 📋 Contexto del Proyecto - [NOMBRE]
+# 📋 Contexto del Proyecto - Gemimi Vibes Website
 
-> **Última actualización**: [FECHA]  
-> **Estado**: 🚧 En planificación
+> **Última actualización**: 2026-03-03  
+> **Estado**: 🚧 En desarrollo
 
 ---
 
 ## 🎯 Objetivo del Proyecto
 
-[Describe brevemente qué hace este proyecto]
+Landing page premium para **Gemimi Vibes**, la app definitiva para la vida nocturna. La web presenta la app tanto a usuarios (clientes) como a discotecas (negocios), con un diseño visualmente espectacular y animaciones interactivas.
 
 ---
 
@@ -15,74 +15,13 @@
 
 | Campo | Valor |
 |-------|-------|
-| Usuario | [usuario-github] |
-| Repositorio | [nombre-repo] |
-| URL | <https://github.com/[usuario]/[repo>] |
+| Usuario | Davidstrategia |
+| Repositorio | gemimi-web |
+| URL | <https://github.com/Davidstrategia/gemimi-web> |
 | Rama principal | main |
 
-- [ ] Repo creado
-- [ ] Primer push realizado
-
----
-
-## 🐳 Infraestructura Local (Docker)
-
-> Todo proyecto arranca con Docker local. La base de datos y la app se ejecutan en contenedores.
-
-### Docker Compose
-
-| Servicio | Imagen | Puerto |
-|----------|--------|--------|
-| Base de datos | postgres:16 | 5432 |
-| App / Backend | [imagen] | [puerto] |
-| Frontend | [imagen] | 3000 |
-
-### Estado
-
-- [ ] Docker Desktop instalado
-- [ ] `docker-compose.yml` configurado
-- [ ] Contenedores levantados (`docker compose up`)
-- [ ] Base de datos accesible
-
----
-
-## ☁️ Despliegue (Producción)
-
-### Ruta: [Supabase + Vercel / VPS personal / Solo Docker local]
-
-#### Opción A: Supabase + Vercel
-
-| Servicio | API Key / Token | Estado |
-|----------|-----------------|--------|
-| Supabase | `[SUPABASE_URL]` | ⏳ |
-| Supabase | `[SUPABASE_ANON_KEY]` | ⏳ |
-| Supabase | `[SUPABASE_SERVICE_ROLE_KEY]` | ⏳ |
-| Vercel | `[VERCEL_TOKEN]` | ⏳ |
-
-#### Opción B: VPS Personal
-
-| Campo | Valor |
-|-------|-------|
-| Proveedor | [Contabo/Hetzner/otro] |
-| IP | [xxx.xxx.xxx.xxx] |
-| Acceso SSH | [usuario@ip] |
-| Dominio | [ejemplo.com] |
-
-> 💡 Rellena solo la opción que vayas a usar y borra la otra.
-
----
-
-## 📊 Estado Actual
-
-### Fase: [Planificación/Desarrollo/Testing/Producción]
-
-- [ ] Requisitos definidos
-- [ ] Stack elegido
-- [ ] GitHub configurado
-- [ ] Docker local funcionando
-- [ ] Desarrollo iniciado
-- [ ] Testing completado
-- [ ] Desplegado
+- [x] Repo creado
+- [x] Primer push realizado
 
 ---
 
@@ -92,63 +31,98 @@
 
 | Componente | Tecnología | Notas |
 |------------|------------|-------|
-| Frontend | | |
-| Backend | | |
-| Base de datos | | |
-| Autenticación | | |
+| Frontend | HTML5 + CSS3 + JavaScript vanilla | Sin frameworks, una sola página |
+| Estilos | CSS puro (custom properties, animaciones) | ~45KB de estilos |
+| Interactividad | JavaScript vanilla (Canvas, IntersectionObserver) | ~17KB de scripts |
+| Assets | PNG, SVG, MP4 | Logo + mockup + vídeo intro |
 
-### Integraciones
+### Características implementadas
 
-- [ ] [Integración 1]
-- [ ] [Integración 2]
+- **Intro cinematográfico**: Vídeo fullscreen con overlay oscuro y botón "Ir a página principal"
+- **Cursor magnético**: Efecto glow que sigue al ratón con atracción en elementos interactivos
+- **Partículas constelación**: Canvas con partículas animadas (púrpura, rosa, dorado) con líneas de conexión
+- **Tarjetas 3D tilt**: Efecto perspectiva al pasar el ratón sobre feature cards y dashboard
+- **Typewriter hero**: Texto con efecto máquina de escribir rotando frases
+- **Contadores animados**: Números que se animan con spring easing al hacer scroll
+- **Scroll reveal**: Animaciones de entrada word-by-word y stagger para secciones
+- **Barra de progreso scroll**: Indicador visual del progreso de scroll
+- **Efecto ripple**: En botones al hacer clic
+- **Parallax sutil**: En la sección hero
+
+### Secciones de la página
+
+1. **Intro** — Vídeo fullscreen de neones
+2. **Hero** — Título con typewriter, stats, mockup del móvil
+3. **Para Clientes** — 6 feature cards (Radar, Chats, Entradas, Perfil, Favoritos, Historial)
+4. **Para Discotecas** — 5 módulos del panel (Analytics IA, Events, Access Control, Team, Venue) + dashboard visual
+5. **Slogan Divider** — Frase "Tú tienes el deseo. Nosotros tenemos el lugar."
+6. **CTA** — Botones App Store y Google Play
+7. **Footer** — Links producto, empresa, legal + redes sociales
 
 ---
 
-## 📚 Recursos Importantes
+## 📁 Archivos del Proyecto
 
-### Documentación
+| Archivo | Descripción |
+|---------|-------------|
+| `index.html` | Estructura HTML de la landing page |
+| `styles.css` | Todos los estilos (45KB) |
+| `script.js` | Toda la interactividad (17KB) |
+| `logo-icon.png` | Icono del logo Gemimi |
+| `logo-full.png` | Logo completo Gemimi |
+| `logo.svg` | Logo en formato vectorial |
+| `gemimi_app_mockup.png` | Mockup de la app para el hero |
+| `Darkness_with_neon_lights_delpmaspu_.mp4` | Vídeo de intro (~4.6MB) |
 
-- APIs: `docs/apis/`
-- Requisitos: `docs/requisitos/`
-- Diseños: `docs/diseño/`
+---
 
-### URLs de Referencia
+## 📊 Estado Actual
 
-- [ ] [Enlace 1]
-- [ ] [Enlace 2]
+### Fase: Desarrollo
+
+- [x] Requisitos definidos
+- [x] Stack elegido (HTML/CSS/JS vanilla)
+- [x] GitHub configurado
+- [ ] Docker local (no aplica — sitio estático)
+- [x] Desarrollo iniciado
+- [x] Estructura HTML completa
+- [x] Estilos CSS completos
+- [x] Interactividad JavaScript completa
+- [x] Intro con vídeo fullscreen implementado
+- [ ] Testing completado
+- [ ] Desplegado
 
 ---
 
 ## 📝 Notas y Decisiones
 
-### 2026-02-08
+### 2026-03-03
 
-- Plantilla mejorada con nuevas secciones en CONTEXT.md (GitHub, Docker, Despliegue)
-- Creado workflow `/nuevo-proyecto` (setup completo: GitHub + Docker + destino)
-- Creado workflow `/importar-github` (clonar repos existentes)
-- Actualizado `COMO-USAR.md` con nuevo flujo de pasos
-- Reescrito `deploy/README.md` con filosofía Docker-first y 3 rutas
-- Actualizado workflow `/deploy` para preguntar qué ruta usar
+- Actualizado CONTEXT.md con el estado actual del proyecto
+- El proyecto tiene todas las secciones de la landing implementadas
+- Intro cinematográfico cambiado de logo+texto a vídeo fullscreen con neones
+- Botón "Saltar intro" renombrado a "Ir a página principal"
+- Se eliminó el auto-dismiss timer del intro y la función de remoción de fondo del logo
+- Importado desde GitHub y fusionado con la plantilla de workflows
 
-### [FECHA]
+### 2026-03-01
 
-- Proyecto iniciado
-- [Decisiones tomadas]
+- Reemplazada la intro original por un vídeo fullscreen (`Darkness_with_neon_lights_delpmaspu_.mp4`)
+- Limpieza de código JS: eliminadas funciones obsoletas del intro anterior
+
+### 2026-02-28
+
+- Incorporado el logo oficial y colores de marca (púrpura, rosa, dorado)
+- Mejoradas animaciones y sensación premium del diseño
+- Versión inicial del sitio con todas las secciones
 
 ---
 
 ## 🚀 Próximos Pasos
 
-1. [Paso 1]
-2. [Paso 2]
-3. [Paso 3]
-
----
-
-## 💡 Cómo usar este archivo
-
-**Al iniciar un nuevo chat:**
-> "Lee el archivo CONTEXT.md para ver el estado del proyecto"
-
-**Al terminar cada sesión:**
-> Actualiza las secciones: Estado, Notas, Próximos Pasos
+1. Optimizar rendimiento (lazy loading vídeo, compresión de imágenes)
+2. Añadir meta tags Open Graph y Twitter Cards para compartir en redes
+3. Testing responsive en múltiples dispositivos
+4. Configurar despliegue (Vercel, Netlify o similar)
+5. Añadir página de política de privacidad y términos
+6. Conectar botones de descarga a las tiendas reales cuando la app esté disponible

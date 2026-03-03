@@ -1,3 +1,14 @@
+# System files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
 # Dependencies
 node_modules/
 venv/
@@ -8,22 +19,17 @@ __pycache__/
 .env.local
 .env.*.local
 
-# Build outputs
+# Build output
 dist/
 build/
 .next/
 
-# IDE
-.vscode/
-.idea/
-
-# OS files
-.DS_Store
-Thumbs.db
-
 # Logs
 *.log
+*.tmp
 npm-debug.log*
 
-# Antigravity brain (personal artifacts)
+# Gemini/Antigravity agent files
 .gemini/
+.agents/
+_PLANTILLA-PROYECTO/

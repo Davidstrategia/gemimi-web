@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240">
+  <defs>
+    <linearGradient id="archGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B30FF"/>
+      <stop offset="100%" style="stop-color:#7B2FBE"/>
+    </linearGradient>
+    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B8A"/>
+      <stop offset="100%" style="stop-color:#FF4D6A"/>
+    </linearGradient>
+    <linearGradient id="diamondGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700"/>
+      <stop offset="100%" style="stop-color:#FFA500"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Arch/Doorway -->
+  <path d="M40,160 L40,70 Q40,20 100,20 Q160,20 160,70 L160,160" 
+        fill="none" stroke="url(#archGrad)" stroke-width="18" stroke-linecap="round" filter="url(#glow)"/>
+  
+  <!-- Martini Glass -->
+  <polygon points="70,100 130,100 100,140" fill="url(#glassGrad)" opacity="0.9"/>
+  <line x1="100" y1="140" x2="100" y2="165" stroke="url(#glassGrad)" stroke-width="4"/>
+  <line x1="82" y1="165" x2="118" y2="165" stroke="url(#glassGrad)" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Diamond -->
+  <polygon points="100,75 112,90 100,100 88,90" fill="url(#diamondGrad)" filter="url(#glow)"/>
+  
+  <!-- Diamond sparkles -->
+  <line x1="100" y1="68" x2="100" y2="62" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+  <line x1="115" y1="73" x2="120" y2="68" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+  <line x1="85" y1="73" x2="80" y2="68" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Text: Gemimi -->
+  <text x="100" y="200" text-anchor="middle" font-family="'Syne', sans-serif" font-size="36" font-weight="800" fill="#9B30FF">Gemimi</text>
+  
+  <!-- Text: VIBES -->
+  <text x="100" y="228" text-anchor="middle" font-family="'Syne', sans-serif" font-size="22" font-weight="700" letter-spacing="6" fill="#FF4D6A">VIBES</text>
+</svg>
