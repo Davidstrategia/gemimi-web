@@ -97,8 +97,8 @@ Landing page premium para **Gemimi Vibes**, la app definitiva para la vida noctu
 - [x] Intro con vídeo fullscreen implementado
 - [ ] Testing completado
 - [ ] GitHub Secrets configurados
-- [ ] Primer despliegue en VPS
-- [ ] Proxy Host en Nginx Proxy Manager
+- [x] Primer despliegue en VPS
+- [/] Proxy Host en Nginx Proxy Manager
 - [ ] DNS en Cloudflare (gemimi.app → VPS)
 
 ---
@@ -110,10 +110,16 @@ Landing page premium para **Gemimi Vibes**, la app definitiva para la vida noctu
 - Creada infraestructura de despliegue para VPS OVH (`51.83.192.79`)
 - `Dockerfile`: Nginx Alpine sirviendo archivos estáticos
 - `nginx.conf`: gzip, cache headers, security headers
-- `docker-compose.yml`: puerto 4322, red compartida con Nginx Proxy Manager
+- `docker-compose.yml`: puerto 4322 (externo), red `web` compartida con NPM
 - `.github/workflows/deploy.yml`: CI/CD automático con `appleboy/ssh-action`
+- `.gitattributes`: forzar LF en archivos Docker (evitar errores CRLF Windows→Linux)
 - Dominio: `gemimi.app` (NS migrando a Cloudflare)
-- Pendiente: configurar GitHub Secrets, clonar repo en VPS, crear Proxy Host en NPM
+- Generada clave SSH `ed25519` en PC local y copiada al VPS
+- Repo clonado en VPS en `~/sites/gemimi-web`
+- Container arrancado y verificado: `http://51.83.192.79:4322` → HTTP 200 ✅
+- Fix: COPY en Dockerfile usa JSON array form para ficheros con espacios (`portada hero.jpeg`)
+- NPM: Forward Port debe ser `80` (puerto interno Nginx), no `4322` (externo)
+- Pendiente: configurar GitHub Secrets, terminar NPM Proxy Host, DNS Cloudflare
 
 ### 2026-03-03 (sesión 2)
 
@@ -162,7 +168,7 @@ Landing page premium para **Gemimi Vibes**, la app definitiva para la vida noctu
 
 ### Mejoras pendientes
 
-6. Optimizar rendimiento (lazy loading vídeo, compresión de imágenes)
+1. Optimizar rendimiento (lazy loading vídeo, compresión de imágenes)
 2. Añadir meta tags Open Graph y Twitter Cards para compartir en redes
 3. Testing responsive en múltiples dispositivos
 4. Añadir página de política de privacidad y términos
