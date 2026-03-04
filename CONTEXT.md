@@ -96,7 +96,7 @@ Landing page premium para **Gemimi Vibes**, la app definitiva para la vida noctu
 - [x] Interactividad JavaScript completa
 - [x] Intro con vídeo fullscreen implementado
 - [ ] Testing completado
-- [ ] GitHub Secrets configurados
+- [x] GitHub Secrets configurados
 - [x] Primer despliegue en VPS
 - [/] Proxy Host en Nginx Proxy Manager
 - [ ] DNS en Cloudflare (gemimi.app → VPS)
@@ -104,6 +104,22 @@ Landing page premium para **Gemimi Vibes**, la app definitiva para la vida noctu
 ---
 
 ## 📝 Notas y Decisiones
+
+### 2026-03-04 (sesión 2)
+
+- Fix dashboard 3D tilt: reducido ángulo de rotación (6° vs 12°), números estáticos
+- Fix intro: botón quick-skip (flechita) siempre visible, "Ir a página principal" solo al terminar vídeo
+- Fix: página ahora empieza por arriba al saltar intro (`scrollTo(0,0)`)
+- Fix: tooltips de barras del chart ya no se cortan (`overflow: visible`)
+- Marketing CTA: badge "Próximamente" dorado, stats con iconos (Early Access, ciudades, Gratis)
+- Botón hero: "Descargar App" → "Quiero Acceso"
+- Typewriter: primera frase → "Sé de los primeros en vivir la noche como mereces"
+- Meta tags: Open Graph + Twitter Cards + theme-color
+- Páginas legales: `privacidad.html` + `terminos.html` creadas con diseño oscuro
+- Vídeo comprimido: 7.41MB → 2.07MB (-72% con ffmpeg CRF 28)
+- Test responsive móvil (375px): OK, sin problemas
+- Sección redes sociales: Instagram, TikTok, X, YouTube con iconos SVG y hover neon
+- Página cookies: `cookies.html` creada con tablas por tipo de cookie
 
 ### 2026-03-04
 

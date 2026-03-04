@@ -7,7 +7,29 @@
   <meta name="description"
     content="Gemimi Vibes — La app definitiva para la vida nocturna. Descubre discotecas, eventos, chats y mucho más.">
   <title>Gemimi Vibes — La Noche Es Tuya</title>
-  <link rel="stylesheet" href="styles.css?v=12">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gemimi.app/">
+  <meta property="og:title" content="Gemimi Vibes — La Noche Es Tuya">
+  <meta property="og:description"
+    content="La app definitiva para la vida nocturna. Descubre discotecas, eventos exclusivos, chats y mucho más. Tú tienes las ganas. Nosotros tenemos el lugar.">
+  <meta property="og:image" content="https://gemimi.app/logo-full.png">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Gemimi Vibes">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gemimi Vibes — La Noche Es Tuya">
+  <meta name="twitter:description"
+    content="La app definitiva para la vida nocturna. Descubre discotecas, eventos y conoce gente con tus mismas vibes.">
+  <meta name="twitter:image" content="https://gemimi.app/logo-full.png">
+
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#06050E">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="stylesheet" href="styles.css?v=14">
   <link rel="icon" type="image/png" href="logo-icon.png">
 </head>
 
@@ -36,7 +58,16 @@
       <span id="mute-icon">🔊</span>
     </button>
 
-    <!-- Skip button (hidden, shown after video ends) -->
+    <!-- Quick skip button (always visible, small arrow next to mute) -->
+    <button id="quick-skip" class="quick-skip" onclick="skipIntro()" title="Saltar intro">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="13 17 18 12 13 7"></polyline>
+        <polyline points="6 17 11 12 6 7"></polyline>
+      </svg>
+    </button>
+
+    <!-- "Ir a página principal" (hidden, shown after video ends) -->
     <button id="skip-intro" class="skip-intro-hidden" onclick="skipIntro()">Ir a página principal ›</button>
   </div>
 
@@ -71,13 +102,13 @@
       <div class="hero-content">
         <div class="hero-text reveal">
           <div class="hero-badge">
-            <span>Disponible ahora</span>
+            <span>🔥 Próximamente</span>
           </div>
           <h1>Tú tienes <span class="text-gradient">las ganas.</span><br>Nosotros tenemos el <span
               class="text-gradient">lugar.</span></h1>
           <p class="hero-typewriter"
-            data-phrases='["Encuentra tu plan perfecto para esta noche", "Conoce gente con tus mismas vibes", "Accede a eventos VIP exclusivos", "Descubre los mejores locales cerca de ti"]'>
-            Encuentra tu plan perfecto para esta noche</p>
+            data-phrases='["Sé de los primeros en vivir la noche como mereces", "Conoce gente con tus mismas vibes", "Accede a eventos VIP exclusivos", "Descubre los mejores locales cerca de ti"]'>
+            Sé de los primeros en vivir la noche como mereces</p>
           <div class="hero-buttons">
             <a href="#cta" class="btn btn-primary">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -85,22 +116,25 @@
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-              Descargar App
+              Quiero Acceso
             </a>
             <a href="#clients" class="btn btn-outline">Explorar Features</a>
           </div>
           <div class="hero-stats">
             <div class="stat-item">
-              <span class="stat-number" data-target="150" data-suffix="+">0</span>
-              <span class="stat-label">Discotecas</span>
+              <span class="stat-icon">🔥</span>
+              <span class="stat-label">Early Access</span>
+              <span class="stat-sublabel">Plazas limitadas</span>
             </div>
             <div class="stat-item">
-              <span class="stat-number" data-target="50" data-suffix="K+">0</span>
-              <span class="stat-label">Usuarios</span>
+              <span class="stat-icon">🏙️</span>
+              <span class="stat-label">Madrid, Barcelona +</span>
+              <span class="stat-sublabel">Primeras ciudades</span>
             </div>
             <div class="stat-item">
-              <span class="stat-number" data-target="12" data-suffix="">0</span>
-              <span class="stat-label">Ciudades</span>
+              <span class="stat-icon">🎁</span>
+              <span class="stat-label">Gratis</span>
+              <span class="stat-sublabel">Para siempre</span>
             </div>
           </div>
         </div>
@@ -271,15 +305,15 @@
               </div>
               <div class="dashboard-stats-row">
                 <div class="dash-stat">
-                  <span class="number purple" data-target="847">0</span>
+                  <span class="number purple">847</span>
                   <span class="label">Visitantes hoy</span>
                 </div>
                 <div class="dash-stat">
-                  <span class="number gold" data-target="12540">0</span>
+                  <span class="number gold">12.540</span>
                   <span class="label">€ Ingresos</span>
                 </div>
                 <div class="dash-stat">
-                  <span class="number green" data-target="94">0</span>
+                  <span class="number green">94</span>
                   <span class="label">% Satisfacción</span>
                 </div>
               </div>
@@ -314,6 +348,69 @@
         <span class="slogan-line slogan-line-1">Tú tienes <em>las ganas.</em></span>
         <span class="slogan-line slogan-line-2">Nosotros tenemos el <em>lugar.</em></span>
       </blockquote>
+    </div>
+  </section>
+
+  <!-- ============ SOCIAL MEDIA ============ -->
+  <section id="social" class="social-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag"><span class="tag-dot"></span> Síguenos</span>
+        <h2>Únete a la <span class="text-gradient">comunidad</span></h2>
+        <p>Sé el primero en enterarte de eventos, novedades y contenido exclusivo. La noche no espera.</p>
+      </div>
+
+      <div class="social-grid reveal">
+        <a href="#" class="social-card social-instagram" target="_blank" rel="noopener">
+          <div class="social-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <circle cx="12" cy="12" r="5" />
+              <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
+            </svg>
+          </div>
+          <span class="social-name">Instagram</span>
+          <span class="social-handle">@gemimi.vibes</span>
+          <span class="social-cta-text">Próximamente</span>
+        </a>
+
+        <a href="#" class="social-card social-tiktok" target="_blank" rel="noopener">
+          <div class="social-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M19.321 5.562a5.124 5.124 0 0 1-.443-.258 6.228 6.228 0 0 1-1.137-.966c-.849-.971-1.166-1.956-1.282-2.645h.004c-.097-.573-.057-.943-.05-.943h-3.865v14.943c0 .2 0 .399-.008.595 0 .024-.003.046-.004.073 0 .01 0 .022-.002.032v.009a3.28 3.28 0 0 1-1.65 2.604 3.226 3.226 0 0 1-1.6.422c-1.8 0-3.26-1.468-3.26-3.281s1.46-3.282 3.26-3.282c.341 0 .68.054 1.004.16l.005-3.936a7.178 7.178 0 0 0-5.531 1.755 7.583 7.583 0 0 0-1.655 2.04c-.163.281-.779 1.412-.853 3.246-.047 1.04.266 2.12.415 2.565v.009c.094.262.457 1.158 1.049 1.913a7.856 7.856 0 0 0 1.674 1.58v-.01l.009.01c1.87 1.27 3.945 1.187 3.945 1.187.36-.015 1.562 0 2.928-.647 1.515-.718 2.377-1.787 2.377-1.787a7.43 7.43 0 0 0 1.296-2.153c.35-.92.466-2.022.466-2.462V8.273c.047.028.672.441.672.441s.9.577 2.303.952c1.006.267 2.363.324 2.363.324V6.153c-.475.052-1.44-.098-2.429-.591z" />
+            </svg>
+          </div>
+          <span class="social-name">TikTok</span>
+          <span class="social-handle">@gemimi.vibes</span>
+          <span class="social-cta-text">Próximamente</span>
+        </a>
+
+        <a href="#" class="social-card social-twitter" target="_blank" rel="noopener">
+          <div class="social-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </div>
+          <span class="social-name">X (Twitter)</span>
+          <span class="social-handle">@GemimiVibes</span>
+          <span class="social-cta-text">Próximamente</span>
+        </a>
+
+        <a href="#" class="social-card social-youtube" target="_blank" rel="noopener">
+          <div class="social-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.546 12 3.546 12 3.546s-7.505 0-9.377.504A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.504 9.376.504 9.376.504s7.505 0 9.377-.504a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+            </svg>
+          </div>
+          <span class="social-name">YouTube</span>
+          <span class="social-handle">Gemimi Vibes</span>
+          <span class="social-cta-text">Próximamente</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -382,9 +479,9 @@
         <div class="footer-col">
           <h4>Legal</h4>
           <ul>
-            <li><a href="#">Privacidad</a></li>
-            <li><a href="#">Términos</a></li>
-            <li><a href="#">Cookies</a></li>
+            <li><a href="privacidad.html">Privacidad</a></li>
+            <li><a href="terminos.html">Términos</a></li>
+            <li><a href="cookies.html">Cookies</a></li>
           </ul>
         </div>
       </div>
@@ -399,7 +496,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=9"></script>
+  <script src="script.js?v=10"></script>
 </body>
 
 </html>

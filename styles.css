@@ -262,6 +262,37 @@ section {
   transform: scale(1.1);
 }
 
+/* Quick skip button — always visible during intro */
+.quick-skip {
+  position: absolute;
+  top: 72px;
+  right: 20px;
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all var(--transition-fast);
+  opacity: 0;
+  animation: fadeSlideUp 0.5s forwards;
+  animation-delay: 1s;
+}
+
+.quick-skip:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(0, 229, 255, 0.5);
+  color: var(--neon-cyan);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+}
+
 /* Skip button hidden until video ends */
 .skip-intro-hidden {
   position: relative;
@@ -575,8 +606,7 @@ section {
   cursor: pointer;
   transition: all var(--transition-fast);
   opacity: 0;
-  animation: fadeSlideUp 0.8s forwards;
-  animation-delay: 1.5s;
+  pointer-events: none;
   backdrop-filter: blur(10px);
 }
 
@@ -860,12 +890,12 @@ section {
   align-items: center;
   gap: var(--space-sm);
   padding: 6px 16px;
-  background: rgba(0, 229, 255, 0.06);
-  border: 1px solid rgba(0, 229, 255, 0.2);
+  background: rgba(255, 215, 0, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.25);
   border-radius: var(--radius-xl);
   font-size: 0.72rem;
   font-weight: 600;
-  color: var(--neon-cyan);
+  color: var(--gold);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   margin-bottom: var(--space-xl);
@@ -877,8 +907,8 @@ section {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--neon-cyan);
-  box-shadow: 0 0 10px var(--neon-cyan);
+  background: var(--gold);
+  box-shadow: 0 0 10px var(--gold);
   animation: badgePulse 2s infinite;
 }
 
@@ -925,6 +955,14 @@ section {
 
 .stat-item {
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat-icon {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
 }
 
 .stat-number {
@@ -939,11 +977,17 @@ section {
 }
 
 .stat-label {
-  font-size: 0.75rem;
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.stat-sublabel {
+  font-size: 0.68rem;
   color: var(--text-tertiary);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-top: 2px;
+  letter-spacing: 0.06em;
 }
 
 /* Hero Visual */
@@ -1405,8 +1449,9 @@ section {
   border-radius: var(--radius-lg);
   padding: var(--space-2xl);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .dashboard-card::before {
@@ -1520,7 +1565,7 @@ section {
   height: 130px;
   background: var(--bg-elevated);
   border-radius: var(--radius-sm);
-  overflow: hidden;
+  overflow: visible;
   border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
@@ -1866,8 +1911,16 @@ section {
 .feature-card,
 .dashboard-card {
   transform-style: preserve-3d;
-  transition: transform 0.15s ease-out, border-color 0.3s, box-shadow 0.3s;
   will-change: transform;
+}
+
+.feature-card {
+  transition: transform 0.15s ease-out, border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Dashboard card: gentler 3D tilt to avoid erratic scroll behavior */
+.dashboard-card {
+  transition: transform 0.2s ease-out, border-color 0.3s, box-shadow 0.3s;
 }
 
 .feature-card.tilting::after {
@@ -2336,5 +2389,171 @@ section.section-visible .cta-content {
 
   50% {
     filter: drop-shadow(0 0 20px rgba(255, 77, 106, 0.6)) drop-shadow(0 0 50px rgba(155, 48, 255, 0.35));
+  }
+}
+
+/* ============================================
+   SOCIAL MEDIA SECTION
+   ============================================ */
+.social-section {
+  padding: var(--space-4xl) 0;
+  position: relative;
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  margin-top: var(--space-3xl);
+}
+
+.social-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-2xl) var(--space-lg);
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.social-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, var(--glow-color, rgba(255, 255, 255, 0.03)) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.social-card:hover::before {
+  opacity: 1;
+}
+
+.social-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--border-color, rgba(255, 255, 255, 0.15));
+  box-shadow: 0 20px 60px var(--shadow-color, rgba(0, 0, 0, 0.3));
+}
+
+.social-icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.social-icon-wrap svg {
+  width: 30px;
+  height: 30px;
+  color: var(--text-secondary);
+  transition: color 0.3s ease, filter 0.3s ease;
+}
+
+.social-card:hover .social-icon-wrap {
+  border-color: var(--border-color, rgba(255, 255, 255, 0.15));
+  background: var(--icon-bg, rgba(255, 255, 255, 0.06));
+}
+
+.social-card:hover .social-icon-wrap svg {
+  color: var(--icon-color, var(--text-primary));
+  filter: drop-shadow(0 0 8px var(--glow-color, transparent));
+}
+
+.social-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  position: relative;
+  z-index: 1;
+}
+
+.social-handle {
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+  position: relative;
+  z-index: 1;
+}
+
+.social-cta-text {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  padding: 4px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-xl);
+  margin-top: var(--space-sm);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.social-card:hover .social-cta-text {
+  color: var(--icon-color, var(--text-primary));
+  border-color: var(--border-color, rgba(255, 255, 255, 0.2));
+}
+
+/* Instagram — gradient */
+.social-instagram {
+  --glow-color: rgba(225, 48, 108, 0.15);
+  --border-color: rgba(225, 48, 108, 0.4);
+  --shadow-color: rgba(225, 48, 108, 0.15);
+  --icon-bg: rgba(225, 48, 108, 0.1);
+  --icon-color: #E1306C;
+}
+
+/* TikTok — cyan/pink */
+.social-tiktok {
+  --glow-color: rgba(0, 242, 234, 0.15);
+  --border-color: rgba(0, 242, 234, 0.4);
+  --shadow-color: rgba(0, 242, 234, 0.15);
+  --icon-bg: rgba(0, 242, 234, 0.1);
+  --icon-color: #00F2EA;
+}
+
+/* Twitter/X — white/blue */
+.social-twitter {
+  --glow-color: rgba(255, 255, 255, 0.08);
+  --border-color: rgba(255, 255, 255, 0.3);
+  --shadow-color: rgba(255, 255, 255, 0.08);
+  --icon-bg: rgba(255, 255, 255, 0.06);
+  --icon-color: #FFFFFF;
+}
+
+/* YouTube — red */
+.social-youtube {
+  --glow-color: rgba(255, 0, 0, 0.12);
+  --border-color: rgba(255, 0, 0, 0.4);
+  --shadow-color: rgba(255, 0, 0, 0.12);
+  --icon-bg: rgba(255, 0, 0, 0.08);
+  --icon-color: #FF0000;
+}
+
+/* Responsive: 2 cols on tablet, 1 on mobile */
+@media (max-width: 768px) {
+  .social-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .social-grid {
+    grid-template-columns: 1fr 1fr;
   }
 }

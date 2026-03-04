@@ -12,6 +12,8 @@ function skipIntro() {
   // Pause the video when leaving
   const video = intro.querySelector('.intro-video');
   if (video) video.pause();
+  // Scroll to top so page starts from the beginning
+  window.scrollTo(0, 0);
   setTimeout(() => { intro.remove(); }, 800);
 }
 
@@ -47,10 +49,16 @@ function toggleMute() {
     });
   }
 
-  // Show skip button when video ends
+  // Show "Ir a página principal" button ONLY when video ends
   if (skipBtn) {
+    // Ensure it stays hidden until video finishes
+    skipBtn.classList.remove('visible');
     video.addEventListener('ended', () => {
       skipBtn.classList.add('visible');
+      skipBtn.style.opacity = '1';
+      skipBtn.style.pointerEvents = 'auto';
+      skipBtn.style.transform = 'translateY(0)';
+      skipBtn.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     });
   }
 }());
@@ -146,19 +154,24 @@ function closeMenu() {
 }
 
 // ============ 3D TILT CARDS ============
+// Dashboard card uses gentler tilt to avoid erratic scroll behavior
 const tiltCards = document.querySelectorAll('.feature-card, .dashboard-card');
 
 tiltCards.forEach(card => {
+  const isDashboard = card.classList.contains('dashboard-card');
+  const maxRotation = isDashboard ? 6 : 12;
+  const scaleVal = isDashboard ? '1, 1, 1' : '1.03, 1.03, 1.03';
+
   card.addEventListener('mousemove', (e) => {
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -12;
-    const rotateY = ((x - centerX) / centerX) * 12;
+    const rotateX = ((y - centerY) / centerY) * -maxRotation;
+    const rotateY = ((x - centerX) / centerX) * maxRotation;
 
-    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${scaleVal})`;
 
     // Dynamic shine/glow effect based on cursor position
     const gradX = (x / rect.width) * 100;
@@ -294,10 +307,11 @@ function animateCounter(el) {
   requestAnimationFrame(update);
 }
 
-const statNumbers = document.querySelectorAll('.stat-number, .dash-stat .number');
+const statNumbers = document.querySelectorAll('.stat-number');
 const counterObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting && !entry.target.dataset.animated) {
+      if (!entry.target.dataset.target) return; // skip static numbers
       entry.target.dataset.animated = 'true';
       animateCounter(entry.target);
     }
