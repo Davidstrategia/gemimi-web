@@ -2276,52 +2276,56 @@ section.section-visible .cta-content {
     gap: var(--space-2xl);
   }
 
-  /* ---- Feature cards: layout horizontal compacto en móvil ---- */
+  /* ---- Feature cards: carrusel horizontal con swipe ---- */
   .features-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-sm);
-  }
-
-  .feature-card {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    /* Convertir el grid en flex horizontal */
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
     gap: var(--space-md);
-    padding: var(--space-lg);
-    /* Quitar el efecto de esquinas en móvil (no se ven bien en horizontal) */
+    padding: 4px var(--space-lg) var(--space-xl);
+    /* padding lateral para que la primera card no esté pegada al borde */
+    margin: 0 calc(-1 * var(--space-lg));
+    /* compensar el padding del container */
+    /* Ocultar scrollbar visualmente */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
-  .feature-card::before,
-  .feature-card::after {
+  .features-grid::-webkit-scrollbar {
     display: none;
   }
 
-  .feature-icon {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    /* no se encoge */
-    font-size: 1.2rem;
-    margin-bottom: 0;
+  /* Cada card: ancho fijo, layout vertical original */
+  .feature-card {
+    flex-shrink: 0;
+    width: 78vw;
+    max-width: 280px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-xl);
   }
 
   .feature-card-text {
     display: block;
-    /* override display:contents del desktop */
-    flex: 1;
-    text-align: left;
+  }
+
+  .feature-icon {
+    margin-bottom: var(--space-lg);
   }
 
   .feature-card h3 {
-    font-size: 1rem;
-    margin-bottom: 3px;
+    font-size: 1.05rem;
+    margin-bottom: var(--space-sm);
   }
 
   .feature-card p {
-    font-size: 0.82rem;
-    line-height: 1.5;
-    color: var(--text-tertiary);
-    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
   }
 
   .dashboard-stats-row {
