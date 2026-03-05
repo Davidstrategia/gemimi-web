@@ -87,37 +87,44 @@ document.addEventListener('mouseleave', () => {
   cursorDot.style.opacity = '0';
 });
 
-function updateCursor() {
-  // Smooth follow with easing
-  glowX += (cursorX - glowX) * 0.08;
-  glowY += (cursorY - glowY) * 0.08;
-  dotX += (cursorX - dotX) * 0.25;
-  dotY += (cursorY - dotY) * 0.25;
+// Detect mobile once
+const isMobile = window.innerWidth <= 768 || ('ontouchstart' in window);
 
-  cursorGlow.style.transform = `translate(${glowX - 200}px, ${glowY - 200}px)`;
-  cursorDot.style.transform = `translate(${dotX - 5}px, ${dotY - 5}px)`;
-  requestAnimationFrame(updateCursor);
+if (!isMobile) {
+  function updateCursor() {
+    // Smooth follow with easing
+    glowX += (cursorX - glowX) * 0.08;
+    glowY += (cursorY - glowY) * 0.08;
+    dotX += (cursorX - dotX) * 0.25;
+    dotY += (cursorY - dotY) * 0.25;
+
+    cursorGlow.style.transform = `translate(${glowX - 200}px, ${glowY - 200}px)`;
+    cursorDot.style.transform = `translate(${dotX - 5}px, ${dotY - 5}px)`;
+    requestAnimationFrame(updateCursor);
+  }
+  updateCursor();
 }
-updateCursor();
 
-// Magnetic pull on interactive elements
-const magneticElements = document.querySelectorAll('.btn, .store-btn, .nav-cta, .feature-card, .nav-links a');
-magneticElements.forEach(el => {
-  el.addEventListener('mousemove', (e) => {
-    const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    const pull = el.classList.contains('feature-card') ? 0.15 : 0.3;
-    el.style.transform = `translate(${x * pull}px, ${y * pull}px)`;
-    cursorDot.classList.add('cursor-hover');
-    cursorGlow.classList.add('cursor-hover');
+// Magnetic pull on interactive elements — desktop only
+if (!isMobile) {
+  const magneticElements = document.querySelectorAll('.btn, .store-btn, .nav-cta, .feature-card, .nav-links a');
+  magneticElements.forEach(el => {
+    el.addEventListener('mousemove', (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const pull = el.classList.contains('feature-card') ? 0.15 : 0.3;
+      el.style.transform = `translate(${x * pull}px, ${y * pull}px)`;
+      cursorDot.classList.add('cursor-hover');
+      cursorGlow.classList.add('cursor-hover');
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = '';
+      cursorDot.classList.remove('cursor-hover');
+      cursorGlow.classList.remove('cursor-hover');
+    });
   });
-  el.addEventListener('mouseleave', () => {
-    el.style.transform = '';
-    cursorDot.classList.remove('cursor-hover');
-    cursorGlow.classList.remove('cursor-hover');
-  });
-});
+}
 
 // ============ SCROLL PROGRESS BAR ============
 const scrollProgress = document.getElementById('scroll-progress');
@@ -153,39 +160,39 @@ function closeMenu() {
   document.getElementById('nav-toggle').classList.remove('active');
 }
 
-// ============ 3D TILT CARDS ============
-// Dashboard card uses gentler tilt to avoid erratic scroll behavior
-const tiltCards = document.querySelectorAll('.feature-card, .dashboard-card');
+// 3D Tilt Cards — desktop only
+if (!isMobile) {
+  const tiltCards = document.querySelectorAll('.feature-card, .dashboard-card');
 
-tiltCards.forEach(card => {
-  const isDashboard = card.classList.contains('dashboard-card');
-  const maxRotation = isDashboard ? 6 : 12;
-  const scaleVal = isDashboard ? '1, 1, 1' : '1.03, 1.03, 1.03';
+  tiltCards.forEach(card => {
+    const isDashboard = card.classList.contains('dashboard-card');
+    const maxRotation = isDashboard ? 6 : 12;
+    const scaleVal = isDashboard ? '1, 1, 1' : '1.03, 1.03, 1.03';
 
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -maxRotation;
-    const rotateY = ((x - centerX) / centerX) * maxRotation;
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -maxRotation;
+      const rotateY = ((x - centerX) / centerX) * maxRotation;
 
-    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${scaleVal})`;
+      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${scaleVal})`;
 
-    // Dynamic shine/glow effect based on cursor position
-    const gradX = (x / rect.width) * 100;
-    const gradY = (y / rect.height) * 100;
-    card.style.setProperty('--shine-x', gradX + '%');
-    card.style.setProperty('--shine-y', gradY + '%');
-    card.classList.add('tilting');
+      const gradX = (x / rect.width) * 100;
+      const gradY = (y / rect.height) * 100;
+      card.style.setProperty('--shine-x', gradX + '%');
+      card.style.setProperty('--shine-y', gradY + '%');
+      card.classList.add('tilting');
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+      card.classList.remove('tilting');
+    });
   });
-
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-    card.classList.remove('tilting');
-  });
-});
+}
 
 // ============ SCROLL REVEAL (Enhanced) ============
 const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
@@ -548,14 +555,16 @@ document.addEventListener('visibilitychange', () => {
   }
 });
 
-// ============ PARALLAX SUBTLE ============
-window.addEventListener('scroll', () => {
-  const scrolled = window.scrollY;
-  const hero = document.querySelector('.hero-visual');
-  if (hero && scrolled < window.innerHeight) {
-    hero.style.transform = `translateY(${scrolled * 0.08}px)`;
-  }
-}, { passive: true });
+// ============ PARALLAX SUBTLE — desktop only ============
+if (!isMobile) {
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const hero = document.querySelector('.hero-visual');
+    if (hero && scrolled < window.innerHeight) {
+      hero.style.transform = `translateY(${scrolled * 0.08}px)`;
+    }
+  }, { passive: true });
+}
 
 // ============ SECTION ENTRY ANIMATIONS ============
 const sections = document.querySelectorAll('section');

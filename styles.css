@@ -2167,6 +2167,13 @@ section.section-visible .cta-content {
     padding: 0 var(--space-lg);
   }
 
+  /* ---- Cursor: oculto en móvil (touch) ---- */
+  #cursor-glow,
+  #cursor-dot {
+    display: none !important;
+  }
+
+  /* ---- Navbar ---- */
   .nav-links {
     display: none;
     position: fixed;
@@ -2187,9 +2194,35 @@ section.section-visible .cta-content {
     display: flex;
   }
 
+  /* Nav links más grandes para touch */
+  .nav-links a {
+    font-size: 1.1rem;
+    padding: 10px 0;
+  }
+
+  .nav-cta {
+    font-size: 0.95rem !important;
+    padding: 14px 28px !important;
+  }
+
   .nav-toggle {
     display: flex;
     z-index: 1001;
+  }
+
+  /* ---- Intro: skip siempre visible en móvil ---- */
+  #skip-intro {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+
+  /* Elementos decorativos del intro ocultos en móvil para mayor limpieza */
+  .intro-glow-ring,
+  .intro-orb-1,
+  .intro-orb-2,
+  .intro-orb-3 {
+    display: none;
   }
 
   /* Hero: stack to 1 column, text first then mockup */
@@ -2261,6 +2294,29 @@ section.section-visible .cta-content {
     align-items: center;
   }
 
+  /* ---- Botones: más grandes para touch ---- */
+  .btn {
+    min-height: 52px;
+    padding: 16px 30px;
+    font-size: 0.92rem;
+  }
+
+  .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-md);
+  }
+
+  /* Ocultar barra de progreso (no relevante en touch) */
+  #scroll-progress {
+    display: none;
+  }
+
   /* Slogan divider: smaller padding */
   .slogan-divider {
     padding: 70px 0;
@@ -2292,6 +2348,7 @@ section.section-visible .cta-content {
 
 /* ============ TABLET BREAKPOINT ============ */
 @media (min-width: 769px) and (max-width: 1024px) {
+
   /* Features: 2 columns on tablet */
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
