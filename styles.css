@@ -1357,6 +1357,12 @@ section {
   line-height: 1.7;
 }
 
+/* Wrapper for mobile horizontal layout — transparent on desktop */
+.feature-card-text {
+  display: contents;
+  /* en desktop no cambia nada: h3 y p siguen siendo hijos directos */
+}
+
 /* ============================================
    FEATURES — BUSINESSES
    ============================================ */
@@ -2270,9 +2276,52 @@ section.section-visible .cta-content {
     gap: var(--space-2xl);
   }
 
-  /* Features: 1 column on mobile */
+  /* ---- Feature cards: layout horizontal compacto en móvil ---- */
   .features-grid {
     grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .feature-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    /* Quitar el efecto de esquinas en móvil (no se ven bien en horizontal) */
+  }
+
+  .feature-card::before,
+  .feature-card::after {
+    display: none;
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    /* no se encoge */
+    font-size: 1.2rem;
+    margin-bottom: 0;
+  }
+
+  .feature-card-text {
+    display: block;
+    /* override display:contents del desktop */
+    flex: 1;
+    text-align: left;
+  }
+
+  .feature-card h3 {
+    font-size: 1rem;
+    margin-bottom: 3px;
+  }
+
+  .feature-card p {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--text-tertiary);
+    margin: 0;
   }
 
   .dashboard-stats-row {
