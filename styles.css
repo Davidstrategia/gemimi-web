@@ -2183,7 +2183,7 @@ section.section-visible .cta-content {
     z-index: 999;
   }
 
-  .nav-links.active {
+  .nav-links.open {
     display: flex;
   }
 
@@ -2192,22 +2192,54 @@ section.section-visible .cta-content {
     z-index: 1001;
   }
 
-  .features-grid {
+  /* Hero: stack to 1 column, text first then mockup */
+  .hero-content {
     grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--space-2xl);
+  }
+
+  .hero-text {
+    max-width: 100%;
+  }
+
+  .hero-text p {
+    max-width: 100%;
+  }
+
+  .hero-buttons {
+    justify-content: center;
   }
 
   .hero-stats {
-    flex-direction: column;
-    gap: var(--space-lg);
-    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-xl);
   }
 
   .stat-item {
     text-align: center;
   }
 
+  /* Hide float cards — they overflow on mobile */
+  .hero-float-card {
+    display: none;
+  }
+
+  /* Smaller mockup centered */
   .phone-mockup {
     width: 220px;
+  }
+
+  /* Business section: stack to 1 column */
+  .business-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  /* Features: 1 column on mobile */
+  .features-grid {
+    grid-template-columns: 1fr;
   }
 
   .dashboard-stats-row {
@@ -2228,6 +2260,11 @@ section.section-visible .cta-content {
     flex-direction: column;
     align-items: center;
   }
+
+  /* Slogan divider: smaller padding */
+  .slogan-divider {
+    padding: 70px 0;
+  }
 }
 
 @media (max-width: 480px) {
@@ -2238,6 +2275,41 @@ section.section-visible .cta-content {
 
   .btn {
     justify-content: center;
+  }
+
+  /* Hero stats: 2x2 grid on small screens */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+  }
+
+  /* Smaller section padding */
+  section {
+    padding: var(--space-2xl) 0;
+  }
+}
+
+/* ============ TABLET BREAKPOINT ============ */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Features: 2 columns on tablet */
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Hero: slightly reduced gap */
+  .hero-content {
+    gap: var(--space-2xl);
+  }
+
+  .phone-mockup {
+    width: 250px;
+  }
+
+  /* Business: stack on tablet too */
+  .business-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
   }
 }
 
