@@ -2176,7 +2176,6 @@ section.section-visible .cta-content {
   width: 280px;
   height: auto;
   opacity: 0.9;
-  mix-blend-mode: screen; /* hace transparente el fondo blanco en un fondo oscuro */
   filter: drop-shadow(0 0 12px rgba(255, 77, 106, 0.3));
 }
 
