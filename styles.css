@@ -2169,8 +2169,10 @@ section.section-visible .cta-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: var(--space-md) 0;
-  margin: calc(-1 * var(--space-2xl)) 0;
+  padding: 0;
+  margin: calc(-1 * var(--space-3xl)) 0;
+  position: relative;
+  z-index: 2;
 }
 
 .martini-divider-img {
@@ -2182,11 +2184,11 @@ section.section-visible .cta-content {
 
 /* Reducir espacio inferior del hero y superior de clientes */
 #hero {
-  padding-bottom: var(--space-xl);
+  padding-bottom: var(--space-md);
 }
 
 #clients {
-  padding-top: var(--space-xl);
+  padding-top: var(--space-lg);
 }
 
 @media (max-width: 768px) {
